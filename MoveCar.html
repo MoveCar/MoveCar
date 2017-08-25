@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        #header {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        #nav {
+            line-height: 30px;
+            background-color: #eeeeee;
+            height: 300px;
+            width: 100px;
+            float: left;
+            padding: 5px;
+        }
+
+        #section {
+            width: 350px;
+            float: left;
+            padding: 10px;
+        }
+
+        #footer {
+            background-color: black;
+            color: white;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:100%;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    var xmlHttp;
+    function createXMLHttp() {
+        if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        } else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    }
+    function showMsg() {
+        createXMLHttp();
+        var tel = document.getElementById("tel").value;
+        var text = document.getElementById("text").value;
+        var url = "http://180.101.227.98:7866/MessageService/SendAlarm/9999/" + "电话：" + tel + " 留言：" + text;
+        xmlHttp.open("GET", url);
+        xmlHttp.send();
+        alert("发送成功！");
+    }
+    function showMsgCallback() {
+        if (xmlHttp.readyState == 4) {
+            if (xmlHttp.status == 200) {
+                var text = xmlHttp.responseText;
+                document.getElementById("msg").className = "test";
+                document.getElementById("msg").innerHTML = text;
+            }
+        }
+    }
+</script>
+<body>
+    <div id="header">
+        <h1>不好意思可能妨碍到您了^_^</h1>
+    </div>
+
+    <div id="section">
+        <p>
+            请输入您的电话： <input id="tel" type="text" size="11" />
+        </p>
+        <p>
+            请输入您的留言：
+        </p>
+        <p>
+            <textarea rows="3" id="text" cols="30"></textarea>
+        </p>
+        <p>
+            <input id="Button1" type="button" value="发送" onclick="showMsg();" />
+        </p>
+    </div>
+
+    <div id="footer">
+        自己做的，禁止抄袭~
+    </div>
+</body>
+</html>
