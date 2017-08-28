@@ -52,7 +52,7 @@
         createXMLHttp();
         var tel = document.getElementById("tel").value;
         var text = document.getElementById("text").value;
-        var url = "" + "电话：" + tel + " 留言：" + text;
+        var url = "https://114.80.13.146/MessageService/SendAlarm/999/" + "电话：" + tel + " 留言：" + text;
         xmlHttp.open("GET", url);
         xmlHttp.send();
         alert("发送成功！");
